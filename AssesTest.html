@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delete Project</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+		.gallery {
+		  margin: 5px;
+		  border: 1px solid #ccc;
+		  float: center;
+		}
+		.gallery:hover {
+		  border: 1px solid #777;
+		}
+		.gallery img {
+		  width: 100%;
+		  height: auto;
+		}
+		#projectName{
+			width:300px;
+			border-radius: 3px;
+			border-width: 1px;
+			border-color: gray;
+			padding: 5px;
+		}
+	</style>
+	<script>
+	
+		function deleteProject()
+			{
+				var projectName = document.getElementById("projectName").value;
+				//alert("projectName input : "+projectName);
+				projectName = projectName.toLowerCase();
+				//alert("projectName lowercase : "+projectName);
+				//projectName = projectName.trim();
+				var projectNameLength = projectName.length;
+				//alert("projectName length : "+projectNameLength);
+				var newProjectName = "";
+				//alert("newProjectName/untrimmed : "+newProjectName);
+				for(var i=0;i<projectNameLength;i++)
+				{
+					//alert("inside trim loop");
+					var charStr = projectName.charAt(i)
+					//alert("Character : "+charStr);
+					if(charStr == " ")
+					{
+						continue;
+					}
+					else
+					{
+						//alert("Inside else : "+charStr);
+						if(newProjectName == "")
+						{
+							newProjectName = charStr;
+						}
+						else
+						{
+							newProjectName = newProjectName+charStr;
+						}
+					}
+				}
+				
+				//alert("newProjectName/trimmed : "+newProjectName);
+				
+				var list = document.getElementsByTagName("div");
+				//alert("List : "+list);
+				var listLength = list.length;
+				//alert("listLength : "+listLength);
+				for(var i=1;i<listLength;i++)
+				{
+					//alert("i = "+i);
+					var divID = list[i].id
+					//alert("div id = "+divID)
+					//alert(("projectName : "+newProjectName));
+					if(divID == newProjectName)
+					{
+						//alert("condition true");
+						//var divDisplay = document.getElementById(divID).style.display.value;
+						document.getElementById(divID).style.display = "none";
+						//divID.style.display = "none";
+						//alert("Display Style"+divDisplay);
+						break;
+					}
+				}			
+			}
+		/*function displayFunction()
+		{
+			alert("You pressed a key inside the input field");
+			count++;
+			if(count == 3)
+			{
+				alert("Count = "+count);
+				var projectName = document.getElementById("projectName").value;
+				projectName = (projectName.trim());
+				projectName = projectName.toLowerCase();
+				alert("Project Name : "+projectName);
+				var list = document.getElementsByTagName("div");
+				alert("List : "+list);
+				var listLength = list.length;
+				alert("listLength : "+listLength);
+				/*for(var i=1;i<listLength;i++)
+				{
+					list[i].style.display = "none";
+					if(list[i].id == projectName)
+					{
+						list[i].style.display = "block";
+					}
+				}
+				for(var i=1;i<listLength;i++)
+				{
+					alert("i = "+i);
+					alert("div id = "+list[i].id)
+					if(list[i].id != "" && (list[i].id).substring(1,count) == projectName)
+					{
+					alert("div id inside if= "+list[i].id)
+						list[i-1].style.display = "block";
+						list[i].style.display = "block";
+						list[i+1].style.display = "block";
+						i++
+					}
+					else
+					{
+						
+						list[i].style.display = "none";
+						
+					}
+				}
+			}		
+		}*/
+	</script>
+</head>
+<body>
+
+<div class="container-fluid">
+	<!--	Navbar	-->
+	<nav class="navbar navbar-inverse">
+	  <!--<div class="container-fluid">-->
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="#">Layout 1</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		  <ul class="nav navbar-nav">
+			<li><a href="#">About</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Contact</a></li>
+		  </ul>
+		</div>
+	  <!--</div>-->
+	</nav>
+	<!-- ****************** -->
+	
+	<!-- Search Bar	-->
+	
+		<input type="text" id="projectName" onkeypress="displayFunction()"> <button type="button" onclick="deleteProject()" class="btn btn-danger">Delete Project</button>
+	
+	<!--	*****	-->
+
+  <div class="row">
+    <div class="col-sm-4" id="project1">
+		<div class="gallery">			
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			
+				<h4><b>Project 1</b></h4>
+				<p>This a demo Project</p>
+			
+		</div>
+    </div>
+    <div class="col-sm-4" id="project2">
+		<div class="gallery">
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			
+				<h4><b>Project 2</b></h4>
+				<p>This a demo Project</p>
+			
+		</div>
+    </div>
+	<div class="col-sm-4" id="project3">
+		<div class="gallery">
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			
+				<h4><b>Project 3</b></h4>
+				<p>This a demo Project</p>
+			
+		</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4" id="demoproject1">
+		<div class="gallery">
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			<div class="desc">
+				<h4><b>Demo Project 1</b></h4>
+				<p>This a demo Project</p>
+			</div>
+		</div>
+    </div>
+    <div class="col-sm-4" id="demoproject2">
+		<div class="gallery">
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			<div class="desc">
+				<h4><b>Demo Project 2</b></h4>
+				<p>This a demo Project</p>
+			</div>
+		</div>
+    </div>
+	<div class="col-sm-4" id="testproject1">
+		<div class="gallery">
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			<div class="desc">
+				<h4><b>Test Project 1</b></h4>
+				<p>This a demo Project</p>
+			</div>
+		</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4" id="testproject2">
+		<div class="gallery">
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			<div class="desc">
+				<h4><b>Test Project 2</b></h4>
+				<p>This a demo Project</p>
+			</div>
+		</div>
+    </div>
+    <div class="col-sm-4" id="demoproject3">
+		<div class="gallery">
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			<div class="desc">
+				<h4><b>Demo Project 3</b></h4>
+				<p>This a demo Project</p>
+			</div>
+		</div>
+    </div>
+	<div class="col-sm-4" id="testproject3">
+		<div class="gallery">
+			<img src="test.png" alt="testimg" class="img-thumbnail" width="100%" height="100%">
+			<div class="desc">
+				<h4><b>Test Project 2</b></h4>
+				<p>This a demo Project</p>
+			</div>
+		</div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
